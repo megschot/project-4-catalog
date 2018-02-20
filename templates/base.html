@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <title>Summer Reads Catalog</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container">
+        <h1><a class="navbar-brand" id="main-brand-text" href="/">Summer Reads Catalog</a></h1>
+        <div id="navbar">
+          {% if 'username' not in session %}
+            <a class="btn btn-primary btn-success"
+              href="{{url_for('login')}}">Click Here to Login</a>
+          {% else %}
+            <span class="float-xs-right">
+              <a class="btn btn-secondary"
+                href="{{ url_for('new_item') }}">Create Item</a>
+              <a class="btn btn-primary btn-success" href="{{url_for('logout')}}">Logout</a>
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <div class="alert alert-success d-flex justify-content-center">
+                    {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </body>
+</html>

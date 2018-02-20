@@ -1,0 +1,18 @@
+ul.latest-items span.tag {
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.custom-column {
+  margin-bottom: 1rem;
+}
+
+.item .card-title {
+  display: inline-block;
+}
+a {
+  text-decoration: none !important;
+}
+.a-block {
+  display: block;
+}
